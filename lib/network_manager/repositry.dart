@@ -2,6 +2,7 @@
 import 'package:dio_api/network_manager/dio_healper.dart';
 
 import '../modal/create_job_modal.dart';
+import '../modal/image_modal.dart';
 import '../modal/list_modal.dart';
 import '../modal/map_modal.dart';
 import '../modal/put_modal.dart';
@@ -43,5 +44,10 @@ class Repositry{
   Future<dynamic>deleteapi(String id)async{
     var response=await _dioHealper.put(url: 'https://api.escuelajs.co/api/v1/products/$id');
     return response;
+  }
+
+  Future<UploadModal>uploadapi(Object requestBody)async{
+    Map<String,dynamic>response=await _dioHealper.uploadfile(url: 'https://api.escuelajs.co/api/v1/files/upload',requestBody: requestBody);
+    return UploadModal .fromJson(response);
   }
 }

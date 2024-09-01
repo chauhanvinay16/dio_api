@@ -94,4 +94,16 @@ class DioHealper{
       return null;
     }
   }
+
+  ///Multopart API
+  Future<dynamic>uploadfile({required String url,required Object requestBody, bool isAuthRequired=false})async{
+    Options option=Options(headers: {"Content-Type":"multipart/form-data"});
+
+    try{
+      Response response=await dio.post(url,data: requestBody,options: option);
+      return response.data;
+    }catch(error){
+      return null;
+    }
+  }
 }
